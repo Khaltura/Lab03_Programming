@@ -63,6 +63,7 @@ bool isPalindrome(std::string S)
  * @return int - максимальное количество очков со всех слов вектора words
  */
 int checkScore(std::vector<std::string> words, std::vector <char> letters, std::vector<int> score){
+    std::string finword;
     int char2[26] = {0};
     int maxi = 0;
     for (int i = 0; i < (int)letters.size(); ++i)
@@ -95,32 +96,35 @@ int checkScore(std::vector<std::string> words, std::vector <char> letters, std::
         {
             a += score[word[j] - 'a'];
         }
-        if (maxi < a) 
-        maxi = a;
+        if (maxi < a){
+            maxi = a;
+            finword=word;
+        }
     }
+    std::cout<< finword<< "\n";
     return maxi;
 }
 
 int main(){
     //ПЕРВАЯ ЗАДАЧА
-    std::string test_one = "255.255.255.254";
-    std::string test_two = "203.0.113.0";
+    std::string test_one = "255.255.255.254"; 
+    std::string test_two = "255.1.124.8";
 
-    std::string result = editIP(test_one);
-    std::cout << result;
+    std::string result = editIP(test_two);
+    std::cout << result <<"\n"; 
     
     //ВТОРАЯ ЗАДАЧА
     std::string S;
     std::cout << "Введите строку: ";
     getline(std::cin, S);
     bool res = isPalindrome(S);
-    std::cout << res;
+    std::cout << res << "\n";
     
     //ТРЕТЬЯ ЗАДАЧА
-    std::vector<std::string> words = {"cat", "dog", "pen", "fog"};
+    std::vector<std::string> words = {"cat", "dog", "p", "fog"};
     std::vector<char> letters = {'a', 'c', 't', 'o', 'g', 'p', 'e', 'n', 'f'};
     std::vector<int> score = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
-    std::cout << "Самое большое количество очков: " << checkScore(words, letters, score);
+    std::cout << "Самое большое количество очков: " << checkScore(words, letters, score)<< "\n";
 
     return 0;
 }
